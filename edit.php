@@ -2,7 +2,16 @@
 session_start();
 require 'db_connect.php';
 
-// Get existing data
+function traduzirStatus($status) {
+    $traducoes = [
+        'scheduled' => 'Agendado',
+        'completed' => 'Concluído',
+        'cancelled' => 'Cancelado'
+    ];
+    return $traducoes[strtolower($status)] ?? ucfirst($status);
+}
+
+// Obter dados existentes
 try {
     $stmt = $conn->prepare("SELECT * FROM appointments WHERE id = ?");
     $stmt->execute([$_GET['id']]);
@@ -18,7 +27,7 @@ try {
     die("Error: " . $e->getMessage());
 }
 
-// Update
+// Atualização
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         $stmt = $conn->prepare("UPDATE appointments SET 

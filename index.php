@@ -1,5 +1,6 @@
 <?php
 require 'db_connect.php';
+require 'helpers.php'; 
 
 try {
     $stmt = $conn->query("SELECT * FROM appointments ORDER BY appointment_date DESC");
@@ -55,10 +56,10 @@ try {
                             <tr>
                                 <td><?= htmlspecialchars($appt['client_name']) ?></td>
                                 <td><?= date('d/m/Y H:i', strtotime($appt['appointment_date'])) ?></td>
-                                <td><?= ucfirst($appt['service_type']) ?></td>
+                                <td><?= traduzirServico($appt['service_type']) ?></td>
                                 <td>
                                     <span class="status-badge <?= strtolower($appt['status']) ?>">
-                                        <?= ucfirst($appt['status']) ?>
+                                        <?= traduzirStatus($appt['status']) ?>
                                     </span>
                                 </td>
                                 <td>

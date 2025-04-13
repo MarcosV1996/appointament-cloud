@@ -1,5 +1,16 @@
 <?php
+session_start();
 require 'db_connect.php';
+
+// Função para traduzir os status
+function traduzirStatus($status) {
+    $traducoes = [
+        'scheduled' => 'Agendado',
+        'completed' => 'Concluído',
+        'cancelled' => 'Cancelado'
+    ];
+    return $traducoes[strtolower($status)] ?? ucfirst($status);
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
@@ -13,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['service_type'],
             $_POST['phone'],
             $_POST['email'],
-            'scheduled',
+            'scheduled', // Status padrão em inglês
             $_POST['notes']
         ]);
         
@@ -49,6 +60,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main class="container">
         <div class="card">
             <form method="POST">
+                <input type="hidden" name="status" value="scheduled"> <!-- Status padrão -->
+
                 <div class="form-group">
                     <label for="client_name">Nome do Cliente</label>
                     <input type="text" id="client_name" name="client_name" class="form-control" placeholder="Nome completo" required>
