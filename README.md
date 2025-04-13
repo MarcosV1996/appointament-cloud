@@ -1,6 +1,6 @@
 # Sistema de Agendamentos - Appointment Cloud
 
-![Logo  da Empresa](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-HzrPYkWg6Q_RMh3q9dv_1atJ93C_qWRbig&s)
+![Logo  da Empresa](https://xadmin.s3.us-east-2.amazonaws.com/52/users/171/image/3699bd31912bfee4c57c81ac0c3ff823.png)
 
 Sistema CRUD completo para gerenciamento de agendamentos, desenvolvido com PHP e MySQL em ambiente virtualizado.
 
